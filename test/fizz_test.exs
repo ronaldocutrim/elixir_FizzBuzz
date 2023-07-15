@@ -1,8 +1,12 @@
 defmodule FizzTest do
   use ExUnit.Case
-  doctest Fizz
+  describe "build/1" do
+    test "When a valid file is provided, returs the coverted list" do
+      assert FizzBuzz.build("numbers.txt") == {:ok, [41, 8, 23, 34, :buzz, :fizz]}
+    end
 
-  test "greets the world" do
-    assert Fizz.hello() == :world
+    test "When a invalid file is provided, return error" do
+      assert FizzBuzz.build("invalid.txt") == {:error, :enoent}
+    end
   end
 end
